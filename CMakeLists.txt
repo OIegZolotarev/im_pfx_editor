@@ -5,6 +5,7 @@ find_package(SDL2 REQUIRED)
 find_package(OpenGL REQUIRED)
 
 
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -15,8 +16,15 @@ FetchContent_Declare(
      glm
      GIT_REPOSITORY https://github.com/g-truc/glm.git
 )
+FetchContent_MakeAvailable(glm)
 
- FetchContent_MakeAvailable(glm)
+FetchContent_Declare(
+	 nlohmann_json
+     GIT_REPOSITORY https://github.com/nlohmann/json.git
+)
+
+FetchContent_MakeAvailable(nlohmann_json)
+ 
 
 # ImGUI setup
 
@@ -62,6 +70,7 @@ add_executable(ImPFXEditor ${sources})
 target_link_libraries(ImPFXEditor PUBLIC imgui)
 target_link_libraries(ImPFXEditor PRIVATE SDL2::SDL2)
 target_link_libraries(ImPFXEditor PRIVATE glm::glm) 
+target_link_libraries(ImPFXEditor PRIVATE nlohmann_json) 
 
 set_target_properties( ImPFXEditor
     PROPERTIES

@@ -2,15 +2,26 @@
 #include <SDL2/SDL.h>
 #include <opengl_shared.h>
 
+#include "common.h"
 #include "application.h"
+
+#include "fs/core.h"
+#include "persistent.h"
 
 Application::Application(int argc, char * argv[])
 {
     m_pMainWindow = new MainWindow("ImGUI PFX Editor");
+    m_pFileSystem = new FileSystem();
+    m_pPersistentStorage = new PersistentStorage(this);
 }
 
 Application::~Application()
 {
+    
+    delete m_pPersistentStorage;
+    delete m_pFileSystem;
+    delete m_pMainWindow;
+
     printf("Application::~Application() stub\n");
 }
 
@@ -48,4 +59,9 @@ void Application::EPICFAIL(const char *format, ...)
 
     SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "EPIC FAIL", tmp, window);
     exit(1);
+}
+
+PersistentStorage * Application::GetPersistentStorage()
+{
+
 }

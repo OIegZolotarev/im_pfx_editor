@@ -7,13 +7,15 @@
 #include "ui/main_window.h"
 
 class FileSystem;
+class PersistentStorage;
 
 class Application
 {      
     MainWindow * m_pMainWindow = nullptr;
     bool m_bTerminated = false;
 
-    FileSystem * m_pFileSystem;
+    FileSystem * m_pFileSystem = nullptr;
+    PersistentStorage* m_pPersistentStorage = nullptr;
 
 public:
     Application(int argc, char* argv[]);
@@ -24,6 +26,7 @@ public:
 
     static Application * Instance();
     static FileSystem * GetFileSystem();
+    static PersistentStorage * GetPersistentStorage();
 
     static void EPICFAIL(const char *format, ...);
 
