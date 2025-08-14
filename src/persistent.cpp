@@ -7,10 +7,10 @@
 #include "application.h"
 #include "persistent.h"
 
-#include "fs/core.h"
+#include "fs_core.h"
 #include "variant.h"
 
-#include "ui/ui_options_pages.h"
+#include "ui_options_pages.h"
 
 PersistentStorage::PersistentStorage(Application *appInstance)
 {
@@ -18,6 +18,8 @@ PersistentStorage::PersistentStorage(Application *appInstance)
     extern ProgramOptions::uiOptionPage_t g_OptionsPages[(int)ProgramOptions::OptionsPage::Total];
 
     RegisterOptions();
+
+
     // TODO: calc this
     m_ApplicationProps.reserve(32);
 
