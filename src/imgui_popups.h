@@ -11,14 +11,8 @@
 
 enum class PopupWindows
 {
-    LightBaker3KConfig = 0,
-    FileDialog,
-    SceneScaleDialog,
-    ProgramOptions,
-    EditGameConfiguration,
-    MesasgeBox,
-    TexturesBrowser,
-    SelectItemFromList
+    ProgramOptions = 0,
+    MessageBox
 };
 
 class IImGUIPopup

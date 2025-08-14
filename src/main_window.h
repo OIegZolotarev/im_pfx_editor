@@ -42,6 +42,8 @@ class MainWindow
 
     MainWindowWidgets* m_pWidgets = nullptr;
 
+    bool m_bUpdateImGuiStyleNextFrame = false;
+
 public:
     MainWindow(const char* strTitle);
     ~MainWindow();
@@ -53,4 +55,5 @@ public:
         return m_pSDLWindow;
     }
 
+    void FlagUpdateStyles() { m_bUpdateImGuiStyleNextFrame = true; }
 };

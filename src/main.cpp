@@ -4,13 +4,6 @@
 #include "application.h"
 
 
-Application * gAppInstance = nullptr;
-
-Application* Application::Instance()
-{
-    return gAppInstance;
-}
-
 int main(int argc, char* argv[])
 {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -24,10 +17,8 @@ int main(int argc, char* argv[])
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1); // Enable double buffering
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24); // Set depth buffer size
 
-
-
     Application app(argc, argv);
-    gAppInstance = &app;
+   
 
     try
     {

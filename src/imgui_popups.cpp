@@ -7,6 +7,8 @@
 #include "imgui_shared.h"
 #include "imgui_popups.h"
 
+#include "popup_options_window.h"
+
 
 IImGUIPopup::IImGUIPopup(PopupWindows id)
 {
@@ -104,7 +106,7 @@ PopupsManager::PopupsManager()
     // m_vPopups.push_back(new LB3kConfigPopup());
     // m_vPopups.push_back(new FileDialog());
     // m_vPopups.push_back(new SceneScaleDialog());
-    // m_vPopups.push_back(new OptionsDialog());
+    m_vPopups.push_back(new OptionsDialog());
     // m_vPopups.push_back(new PopupEditGameconfiguration());
     // m_vPopups.push_back(new TexturesBrowser());
 }

@@ -30,6 +30,7 @@ public:
 
     static void EPICFAIL(const char *format, ...);
 
+    void FlagUpdateStyles() { m_pMainWindow->FlagUpdateStyles(); }
 };
 
 

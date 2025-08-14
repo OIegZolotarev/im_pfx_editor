@@ -8,21 +8,31 @@
 #include "fs_core.h"
 #include "persistent.h"
 
+
+Application * gAppInstance = nullptr;
+
+Application* Application::Instance()
+{
+    return gAppInstance;
+}
+
+
 Application::Application(int argc, char * argv[])
 {
-    m_pMainWindow = new MainWindow("ImGUI PFX Editor");
+    gAppInstance = this;
+
     m_pFileSystem = new FileSystem();
     m_pPersistentStorage = new PersistentStorage(this);
+    m_pMainWindow = new MainWindow("ImGUI PFX Editor");
+    
+    
 }
 
 Application::~Application()
-{
-    
-    delete m_pPersistentStorage;
-    delete m_pFileSystem;
-    delete m_pMainWindow;
-
-    printf("Application::~Application() stub\n");
+{   
+    delete m_pMainWindow; 
+    delete m_pPersistentStorage;        
+    delete m_pFileSystem;    
 }
 
 void Application::Run()

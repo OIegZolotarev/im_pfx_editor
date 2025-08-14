@@ -12,7 +12,7 @@
 
 
 
-PopupMessageBox::PopupMessageBox() : IImGUIPopup(PopupWindows::MesasgeBox)
+PopupMessageBox::PopupMessageBox() : IImGUIPopup(PopupWindows::MessageBox)
 {
     m_Icon        = MessageBoxIcons::None;
     m_bPersistent = false;

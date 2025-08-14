@@ -2,20 +2,20 @@
 #include "opengl_shared.h"
 #include "main_window_widgets.h"
 
-MainWindowWidgets::MainWindowWidgets(MainWindow* pOwner)
+#include "imgui_popups.h"
+
+MainWindowWidgets::MainWindowWidgets(MainWindow *pOwner)
 {
-
 }
-
 
 MainWindowWidgets::~MainWindowWidgets()
 {
-
 }
 
 void MainWindowWidgets::Render()
 {
     RenderMainMenu();
+    PopupsManager::Instance()->RenderPopups();
 }
 
 void MainWindowWidgets::RenderMainMenu()
@@ -33,6 +33,23 @@ void MainWindowWidgets::RenderMainMenu()
 
         if (ImGui::BeginMenu("Edit"))
         {
+
+            if (ImGui::MenuItem("Program options", ""))
+            {
+                PopupsManager::Instance()->ShowPopup(PopupWindows::ProgramOptions);
+            }
+
+            if (ImGui::MenuItem("Test popup", ""))
+            {
+                PopupMessageBox *pMessageBox = new PopupMessageBox;
+                pMessageBox->SetTitle("ATTENTION");
+                pMessageBox->SetMessage("THANK YOU FOR YOUR ATTENTION");
+                pMessageBox->SetIcon(MessageBoxIcons::Warning);
+                pMessageBox->SetButtons(MSG_BOX_OK);
+
+                pMessageBox->Show();
+            }
+
             ImGui::EndMenu();
         }
 

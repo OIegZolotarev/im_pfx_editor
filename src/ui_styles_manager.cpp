@@ -37,6 +37,8 @@ void UIStyles::Manager::SelectNewStyle(size_t index)
 
 void Manager::ScheduleStyleUpdateForAllWindows()
 {
+    Application::Instance()->FlagUpdateStyles();
+
     // auto &lst = Application::Instance()->GetAllWindows();
 
     // for (auto &it : lst)

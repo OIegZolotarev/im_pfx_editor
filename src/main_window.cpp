@@ -6,6 +6,11 @@
 #include "main_window.h"
 #include "main_window_widgets.h"
 
+#include "variant.h"
+
+#include "ui_styles_manager.h"
+#include "imgui_helpers.h"
+
 char g_IMGuiIniPath[1024];
 
 MainWindow::MainWindow(const char* title)
@@ -195,6 +200,8 @@ void MainWindow::ImGuiEndFrame()
 
 void MainWindow::ImGuiBeginFrame()
 {
+    if (m_bUpdateImGuiStyleNextFrame)
+        UIStyles::Manager::Instance()->ApplyCurrentStyle();
     
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplSDL2_NewFrame();
@@ -225,7 +232,9 @@ void MainWindow::InitImGUI()
 
     ImGui_ImplOpenGL3_Init("#version 330");
 
-    // ImGuiHelpers::Init();
+    UIStyles::Manager::Instance()->ApplyCurrentStyle();
+
+    ImGuiHelpers::Init();
 
     // int32_t cursorData[2] = {0, 0};
     // g_EmptyCursor         = SDL_CreateCursor((Uint8 *)cursorData, (Uint8 *)cursorData, 8, 8, 4, 4);
