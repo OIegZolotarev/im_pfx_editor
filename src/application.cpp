@@ -5,7 +5,7 @@
 #include "common.h"
 #include "application.h"
 
-#include "fs/core.h"
+#include "fs_core.h"
 #include "persistent.h"
 
 Application::Application(int argc, char * argv[])
@@ -63,5 +63,5 @@ void Application::EPICFAIL(const char *format, ...)
 
 PersistentStorage * Application::GetPersistentStorage()
 {
-
+    return Instance()->m_pPersistentStorage;
 }

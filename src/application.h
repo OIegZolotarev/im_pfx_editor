@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "ui/main_window.h"
+#include "main_window.h"
 
 class FileSystem;
 class PersistentStorage;

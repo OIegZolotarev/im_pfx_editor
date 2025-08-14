@@ -24,7 +24,19 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(nlohmann_json)
- 
+
+FetchContent_Declare(
+	stb_external
+	GIT_REPOSITORY https://github.com/nothings/stb
+	EXCLUDE_FROM_ALL
+)
+
+FetchContent_MakeAvailable(stb_external)
+
+
+
+add_library(stb ${stb_external_SOURCE_DIR}/stb_image.h)
+set_target_properties(stb PROPERTIES LINKER_LANGUAGE CXX)
 
 # ImGUI setup
 
@@ -62,10 +74,13 @@ include_directories("src/glad")
 include_directories("src/")
 include_directories(${imgui_external_SOURCE_DIR})
 
+include_directories(${stb_external_SOURCE_DIR})
+
 include_directories(${SDL2_INCLUDE_DIR})
 
 # Add an executable target named 'ImPFXEditor' from the source file 'main.cpp'
 add_executable(ImPFXEditor ${sources})
+
 
 target_link_libraries(ImPFXEditor PUBLIC imgui)
 target_link_libraries(ImPFXEditor PRIVATE SDL2::SDL2)
