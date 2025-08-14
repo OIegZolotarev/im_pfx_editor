@@ -1,0 +1,445 @@
+{
+  "description": "Orange 3D Viewer",
+  "data": [
+    {
+      "ImGuiCol_Text": {
+        "r": " 0.902f ",
+        "g": " 0.902 ",
+        "b": " 0.902 ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_TextDisabled": {
+        "r": " 0.600f ",
+        "g": " 0.600 ",
+        "b": " 0.600 ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_WindowBg": {
+        "r": " 0.188f ",
+        "g": " 0.188 ",
+        "b": " 0.188 ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_ChildBg": {
+        "r": " 0.000f ",
+        "g": " 0.000 ",
+        "b": " 0.000 ",
+        "a": " 0.000"
+      }
+    },
+    {
+      "ImGuiCol_PopupBg": {
+        "r": " 0.251f ",
+        "g": " 0.251 ",
+        "b": " 0.251 ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_Border": {
+        "r": " 0.541f ",
+        "g": " 0.541 ",
+        "b": " 0.541 ",
+        "a": " 0.502"
+      }
+    },
+    {
+      "ImGuiCol_BorderShadow": {
+        "r": " 0.000f ",
+        "g": " 0.000 ",
+        "b": " 0.000 ",
+        "a": " 0.000"
+      }
+    },
+    {
+      "ImGuiCol_FrameBg": {
+        "r": " 0.431f ",
+        "g": " 0.431 ",
+        "b": " 0.431 ",
+        "a": " 0.388"
+      }
+    },
+    {
+      "ImGuiCol_FrameBgHovered": {
+        "r": " 0.341f ",
+        "g": " 0.341 ",
+        "b": " 0.341 ",
+        "a": " 0.400"
+      }
+    },
+    {
+      "ImGuiCol_FrameBgActive": {
+        "r": " 0.659f ",
+        "g": " 0.659 ",
+        "b": " 0.659 ",
+        "a": " 0.690"
+      }
+    },
+    {
+      "ImGuiCol_TitleBg": {
+        "r": " 0.463f ",
+        "g": " 0.278 ",
+        "b": " 0.000 ",
+        "a": " 0.871"
+      }
+    },
+    {
+      "ImGuiCol_TitleBgActive": {
+        "r": " 0.690f ",
+        "g": " 0.412 ",
+        "b": " 0.000 ",
+        "a": " 0.086"
+      }
+    },
+    {
+      "ImGuiCol_TitleBgCollapsed": {
+        "r": " 0.341f ",
+        "g": " 0.341 ",
+        "b": " 0.341 ",
+        "a": " 0.400"
+      }
+    },
+    {
+      "ImGuiCol_MenuBarBg": {
+        "r": " 0.153f ",
+        "g": " 0.153 ",
+        "b": " 0.153 ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_ScrollbarBg": {
+        "r": " 0.153f ",
+        "g": " 0.153 ",
+        "b": " 0.153 ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_ScrollbarGrab": {
+        "r": " 0.667f ",
+        "g": " 0.667 ",
+        "b": " 0.667 ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_ScrollbarGrabHovered": {
+        "r": " 0.800f ",
+        "g": " 0.478 ",
+        "b": " 0.000 ",
+        "a": " 0.871"
+      }
+    },
+    {
+      "ImGuiCol_ScrollbarGrabActive": {
+        "r": " 0.800f ",
+        "g": " 0.478 ",
+        "b": " 0.000 ",
+        "a": " 0.871"
+      }
+    },
+    {
+      "ImGuiCol_CheckMark": {
+        "r": " 0.902f ",
+        "g": " 0.902 ",
+        "b": " 0.902 ",
+        "a": " 0.502"
+      }
+    },
+    {
+      "ImGuiCol_SliderGrab": {
+        "r": " 1.000f ",
+        "g": " 1.000 ",
+        "b": " 1.000 ",
+        "a": " 0.302"
+      }
+    },
+    {
+      "ImGuiCol_SliderGrabActive": {
+        "r": " 0.800f ",
+        "g": " 0.478 ",
+        "b": " 0.000 ",
+        "a": " 0.871"
+      }
+    },
+    {
+      "ImGuiCol_Button": {
+        "r": " 0.3f ",
+        "g": " 0.3f ",
+        "b": " 0.3f ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_ButtonHovered": {
+        "r": " 0.800f ",
+        "g": " 0.478 ",
+        "b": " 0.000 ",
+        "a": " 0.871"
+      }
+    },
+    {
+      "ImGuiCol_ButtonActive": {
+        "r": " 0.800f ",
+        "g": " 0.478 ",
+        "b": " 0.000 ",
+        "a": " 0.871"
+      }
+    },
+    {
+      "ImGuiCol_Header": {
+        "r": " 0.431f ",
+        "g": " 0.431 ",
+        "b": " 0.431 ",
+        "a": " 0.388"
+      }
+    },
+    {
+      "ImGuiCol_HeaderHovered": {
+        "r": " 0.545f ",
+        "g": " 0.545 ",
+        "b": " 0.545 ",
+        "a": " 0.388"
+      }
+    },
+    {
+      "ImGuiCol_HeaderActive": {
+        "r": " 0.431f ",
+        "g": " 0.431 ",
+        "b": " 0.431 ",
+        "a": " 0.388"
+      }
+    },
+    {
+      "ImGuiCol_Separator": {
+        "r": " 0.502f ",
+        "g": " 0.502 ",
+        "b": " 0.502 ",
+        "a": " 0.600"
+      }
+    },
+    {
+      "ImGuiCol_SeparatorHovered": {
+        "r": " 0.365f ",
+        "g": " 0.357 ",
+        "b": " 0.357 ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_SeparatorActive": {
+        "r": " 0.835f ",
+        "g": " 0.835 ",
+        "b": " 0.835 ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_ResizeGrip": {
+        "r": " 1.000f ",
+        "g": " 1.000 ",
+        "b": " 1.000 ",
+        "a": " 0.102"
+      }
+    },
+    {
+      "ImGuiCol_ResizeGripHovered": {
+        "r": " 1.000f ",
+        "g": " 1.000 ",
+        "b": " 1.000 ",
+        "a": " 0.600"
+      }
+    },
+    {
+      "ImGuiCol_ResizeGripActive": {
+        "r": " 1.000f ",
+        "g": " 1.000 ",
+        "b": " 1.000 ",
+        "a": " 0.902"
+      }
+    },
+    {
+      "ImGuiCol_Tab": {
+        "r": " 0.463f ",
+        "g": " 0.278 ",
+        "b": " 0.000 ",
+        "a": " 0.871"
+      }
+    },
+    {
+      "ImGuiCol_TabHovered": {
+        "r": " 0.800f ",
+        "g": " 0.478 ",
+        "b": " 0.000 ",
+        "a": " 0.871"
+      }
+    },
+    {
+      "ImGuiCol_TabActive": {
+        "r": " 0.800f ",
+        "g": " 0.478 ",
+        "b": " 0.000 ",
+        "a": " 0.871"
+      }
+    },
+    {
+      "ImGuiCol_TabUnfocused": {
+        "r": " 0.463f ",
+        "g": " 0.278 ",
+        "b": " 0.000 ",
+        "a": " 0.871"
+      }
+    },
+    {
+      "ImGuiCol_TabUnfocusedActive": {
+        "r": " 0.800f ",
+        "g": " 0.478 ",
+        "b": " 0.000 ",
+        "a": " 0.871"
+      }
+    },
+    {
+      "ImGuiCol_DockingPreview": {
+        "r": " 0.176f ",
+        "g": " 0.176 ",
+        "b": " 0.176 ",
+        "a": " 0.314"
+      }
+    },
+    {
+      "ImGuiCol_DockingEmptyBg": {
+        "r": " 0.200f ",
+        "g": " 0.200 ",
+        "b": " 0.200 ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_PlotLines": {
+        "r": " 1.000f ",
+        "g": " 1.000f ",
+        "b": " 1.000f ",
+        "a": " 1.000f"
+      }
+    },
+    {
+      "ImGuiCol_PlotLinesHovered": {
+        "r": " 0.902f ",
+        "g": " 0.702f ",
+        "b": " 0.000 ",
+        "a": " 1.000f"
+      }
+    },
+    {
+      "ImGuiCol_PlotHistogram": {
+        "r": " 0.902f ",
+        "g": " 0.702f ",
+        "b": " 0.000f ",
+        "a": " 1.000f"
+      }
+    },
+    {
+      "ImGuiCol_PlotHistogramHovered": {
+        "r": " 1.000f ",
+        "g": " 0.600f ",
+        "b": " 0.000f ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_TableHeaderBg": {
+        "r": " 0.675f ",
+        "g": " 0.675f ",
+        "b": " 0.675f ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_TableBorderStrong": {
+        "r": " 0.580f ",
+        "g": " 0.580f ",
+        "b": " 0.580 ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_TableBorderLight": {
+        "r": " 0.259f ",
+        "g": " 0.259f ",
+        "b": " 0.278 ",
+        "a": " 1.000"
+      }
+    },
+    {
+      "ImGuiCol_TableRowBg": {
+        "r": " 0.000f ",
+        "g": " 0.000f ",
+        "b": " 0.000f ",
+        "a": " 0.000"
+      }
+    },
+    {
+      "ImGuiCol_TableRowBgAlt": {
+        "r": " 1.000f ",
+        "g": " 1.000f ",
+        "b": " 1.000f ",
+        "a": " 0.039"
+      }
+    },
+    {
+      "ImGuiCol_TextSelectedBg": {
+        "r": " 0.000f ",
+        "g": " 0.000f ",
+        "b": " 1.000f ",
+        "a": " 0.349"
+      }
+    },
+    {
+      "ImGuiCol_DragDropTarget": {
+        "r": " 1.000f ",
+        "g": " 1.000f ",
+        "b": " 0.000f ",
+        "a": " 0.902"
+      }
+    },
+    {
+      "ImGuiCol_NavHighlight": {
+        "r": " 0.800f ",
+        "g": " 4.790f ",
+        "b": " 0.000f ",
+        "a": " 0.871"
+      }
+    },
+    {
+      "ImGuiCol_NavWindowingHighlight": {
+        "r": " 1.000f ",
+        "g": " 1.000f ",
+        "b": " 1.000 ",
+        "a": " 0.702"
+      }
+    },
+    {
+      "ImGuiCol_NavWindowingDimBg": {
+        "r": " 0.800f ",
+        "g": " 0.800f ",
+        "b": " 0.800 ",
+        "a": " 0.200"
+      }
+    },
+    {
+      "ImGuiCol_ModalWindowDimBg": {
+        "r": "0.200f",
+        "g": " 0.200f",
+        "b": " 0.200",
+        "a": " 0.349"
+      }
+    }
+  ]
+}
