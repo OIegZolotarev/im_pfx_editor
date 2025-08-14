@@ -8,6 +8,7 @@
 #include <vector>
 #include <list>
 
+#include <memory.h>
 
 typedef unsigned char byte;
 

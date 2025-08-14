@@ -8,3 +8,13 @@
 // #include <glm/gtx/euler_angles.hpp>
 //#include <glm/gtx/quaternion.hpp>
 #include <glm/mat4x4.hpp>
+
+inline float AngleMod(float val)
+{
+    if (val > 360)
+        return val - 360;
+    else if (val < 0)
+        return val + 360;
+
+    return val;
+}
