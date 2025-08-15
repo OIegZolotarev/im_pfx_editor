@@ -227,6 +227,8 @@ GLuint ShaderProgram::MakeShader(std::string &source, ShaderTypes type, std::lis
         gl_type = GL_FRAGMENT_SHADER;
         ptrs[1] = "#define FRAGMENT_SHADER\n";
         break;
+    default:
+        break;
     }
 
     size_t idx = 2;

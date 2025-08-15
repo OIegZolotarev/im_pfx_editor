@@ -5,6 +5,7 @@
 class MainWindowWidgets
 {
     float m_MainMenuHeight = 0;
+    
 public:
     MainWindowWidgets(MainWindow* pOwner);
     ~MainWindowWidgets();

@@ -5,8 +5,10 @@
 #include "common.h"
 #include "application.h"
 
+// Application modules
 #include "fs_core.h"
 #include "persistent.h"
+#include "commands_registry.h"
 
 
 Application * gAppInstance = nullptr;
@@ -23,13 +25,19 @@ Application::Application(int argc, char * argv[])
 
     m_pFileSystem = new FileSystem();
     m_pPersistentStorage = new PersistentStorage(this);
+
+    m_pCommandsRegistry = new CCommandsRegistry();    
+    m_pCommandsRegistry->InitializeAllCommands();
+
     m_pMainWindow = new MainWindow("ImGUI PFX Editor");
     
-    
+
 }
 
 Application::~Application()
 {   
+    delete m_pCommandsRegistry;
+
     delete m_pMainWindow; 
     delete m_pPersistentStorage;        
     delete m_pFileSystem;    
@@ -65,7 +73,7 @@ void Application::EPICFAIL(const char *format, ...)
     SDL_Window *window = nullptr;
 
     if (Instance()->m_pMainWindow)
-        window = Instance()->m_pMainWindow->SDLHandle();
+        window = Instance()->m_pMainWindow->Handle();
 
     SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "EPIC FAIL", tmp, window);
     exit(1);
@@ -74,4 +82,24 @@ void Application::EPICFAIL(const char *format, ...)
 PersistentStorage * Application::GetPersistentStorage()
 {
     return Instance()->m_pPersistentStorage;
+}
+
+CCommandsRegistry* Application::CommandsRegistry()
+{
+    return Instance()->m_pCommandsRegistry;
+}
+
+void Application::ShowMouseCursor()
+{
+    if (!m_bMouseCursorVisible)
+        Con_Printf("Application::ShowMouseCursor()\n");
+    m_bMouseCursorVisible = true;
+}
+
+void Application::HideMouseCursor()
+{
+    if (m_bMouseCursorVisible)
+        Con_Printf("Application::HideMouseCursor()\n");
+
+    m_bMouseCursorVisible = false;
 }

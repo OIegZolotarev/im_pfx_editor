@@ -48,7 +48,7 @@ PersistentStorage::PersistentStorage(Application *appInstance)
 void PersistentStorage::SetDefaultValues()
 {
     auto setting = GetSetting(ApplicationSettings::BackgroundColor1);
-    setting->SetColorRGBA(glm::vec4(0.25f, 0.25f, 0.25f, 1.0f));
+    setting->SetColorRGBA(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
 
     setting = GetSetting(ApplicationSettings::CameraFov);
     setting->SetFloat(110);
@@ -87,7 +87,7 @@ void PersistentStorage::SetDefaultValues()
     setting->SetInt(0);
 
     setting = GetSetting(ApplicationSettings::CameraMouseSensivityRotating);
-    setting->SetInt(0.5f);
+    setting->SetFloat(0.5f);
 
     setting = GetSetting(ApplicationSettings::CameraMouseSensivityPaning);
     setting->SetInt(1.f);
@@ -99,7 +99,7 @@ void PersistentStorage::SetDefaultValues()
 void PersistentStorage::LoadFromFile(Application *appInstance)
 {
     char persistent_file[1024];
-    char *p = SDL_GetPrefPath("QuiteOldOrange", "LightBaker3000Frontend");
+    char *p = SDL_GetPrefPath(SDL_ORGANIZATION, SDL_APP_NAME);
     snprintf(persistent_file, sizeof(persistent_file), "%s/persistent.json", p);
 
     FileData *fd = Application::Instance()->GetFileSystem()->LoadFile(persistent_file);
@@ -490,13 +490,14 @@ void PersistentStorage::SaveToFile()
 #ifdef WINDOWS
         fopen_s(&fp, persistent_file, "wb");
 #else
-        fopen(persistent_file, "wb");
+       fp = fopen(persistent_file, "wb");
 #endif
 
         if (!fp)
             return;
 
         fprintf(fp, "%s", data.c_str());
+        fflush(fp);
         fclose(fp);
     }
     catch (std::exception &e)

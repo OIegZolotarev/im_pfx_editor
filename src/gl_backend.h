@@ -1,3 +1,4 @@
+#pragma once
 
 #include <stdlib.h>
 #include "opengl_shared.h"
@@ -26,15 +27,19 @@ typedef struct textureUnitState_s
     GLuint texture = 0;
 } textureUnitState_t;
 
+class DrawMesh;
+
 class GLBackend
 {
     GLBackend();
 
+    // Matrices
+    glm::mat4 m_matProjection;
+    glm::mat4 m_matModelView;
 
     // Rendering stats;
     renderStats_t m_RenderStats;
-    // void OnMeshDrawn(DrawMesh *pMesh, size_t numTriangles);
-
+    
     // Texture units
     static size_t m_CurrentTextureUnit;
     static textureUnitState_t m_TexturesUnitStates[16];    
@@ -56,7 +61,7 @@ public:
     void DeleteAllShaders();
     void ReloadAllShaders();
 
-    void NewFrame();
+    void NewFrame(glm::mat4 matProjection, glm::mat4 matModelViewr);
     renderStats_t *RenderStats();
 
     static void BindTexture(int unit, const GLTexture *texture);
@@ -65,6 +70,9 @@ public:
 
     static void SetBlending(bool enable, GLenum sfactor, GLenum dfactor);
     static void SetBlending(bool enable);
+
+    void OnMeshDrawn(DrawMesh *pMesh, size_t numTriangles);
+
 };
 
 

@@ -8,6 +8,7 @@
 
 class FileSystem;
 class PersistentStorage;
+class CCommandsRegistry;
 
 class Application
 {      
@@ -16,7 +17,11 @@ class Application
 
     FileSystem * m_pFileSystem = nullptr;
     PersistentStorage* m_pPersistentStorage = nullptr;
+    CCommandsRegistry*m_pCommandsRegistry = nullptr;
 
+
+    bool m_bMouseCursorVisible = true;
+    
 public:
     Application(int argc, char* argv[]);
     ~Application();
@@ -27,10 +32,15 @@ public:
     static Application * Instance();
     static FileSystem * GetFileSystem();
     static PersistentStorage * GetPersistentStorage();
+    static CCommandsRegistry* CommandsRegistry();
+    static MainWindow* GetMainWindow() { return Instance()->m_pMainWindow; }
 
     static void EPICFAIL(const char *format, ...);
 
     void FlagUpdateStyles() { m_pMainWindow->FlagUpdateStyles(); }
+
+    void         ShowMouseCursor();
+    void         HideMouseCursor();
 };
 
 

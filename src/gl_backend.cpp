@@ -1,5 +1,10 @@
+#include "application.h"
 #include "common.h"
 #include "mathlib.h"
+
+#include "variant.h"
+#include "r_scene_renderer.h"
+#include "r_camera_controller.h"
 
 #include "gl_backend.h"
 #include "gl_shader.h"
@@ -68,8 +73,11 @@ void GLBackend::ReloadAllShaders()
         it->Reload();
 }
 
-void GLBackend::NewFrame()
+void GLBackend::NewFrame(glm::mat4 matProjection, glm::mat4 matModelView)
 {
+
+    m_matProjection = matProjection;
+    m_matModelView = matModelView;
 
     m_RenderStats.nDrawCalls = 0;
     m_RenderStats.nTriangles = 0;
@@ -137,19 +145,19 @@ void GLBackend::BindTexture(int unit, GLuint texture)
 void GLBackend::SetUniformValue(ShaderUniform *it)
 {
     // TODO: implement
-    // CameraController *camera = Application::GetMainWindow()->GetSceneRenderer()->GetCamera();
+    
 
     switch (it->Kind())
     {
-    // case UniformKind::ProjectionMatrix:
-    //     it->SetMat4(camera->GetProjectionMatrix());
-    //     break;
-    // case UniformKind::ModelViewMatrix:
-    //     it->SetMat4(camera->GetViewMatrix());
-    //     break;
-    // case UniformKind::Scale:
-    //     it->SetFloat3({1.f, 1.f, 1.f});
-    //     break;
+     case UniformKind::ProjectionMatrix:
+         it->SetMat4(Instance()->m_matProjection);
+         break;
+     case UniformKind::ModelViewMatrix:
+         it->SetMat4(Instance()->m_matModelView);
+         break;
+     case UniformKind::Scale:
+         it->SetFloat3({1.f, 1.f, 1.f});
+         break;
     default:
         BREAKPOINT();
         break;
@@ -216,4 +224,10 @@ void _GL_CheckForErrors(const char *filename, int line)
     {
         Con_Printf("%s (at %s:%i)\n", GL_GetErrorString(code), filename, line);
     }
+}
+
+void GLBackend::OnMeshDrawn(DrawMesh *pMesh, size_t numTriangles)
+{
+    m_RenderStats.nDrawCalls++;
+    m_RenderStats.nTriangles += numTriangles;
 }

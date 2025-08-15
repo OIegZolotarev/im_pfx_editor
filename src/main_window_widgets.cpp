@@ -1,3 +1,6 @@
+#include "application.h"
+#include "commands_registry.h"
+
 #include "imgui_shared.h"
 #include "opengl_shared.h"
 #include "main_window_widgets.h"
@@ -14,19 +17,19 @@ MainWindowWidgets::~MainWindowWidgets()
 
 void MainWindowWidgets::Render()
 {
-    RenderMainMenu();
     PopupsManager::Instance()->RenderPopups();
 }
 
 void MainWindowWidgets::RenderMainMenu()
 {
+    auto registry = Application::CommandsRegistry();
+    #define COMMAND_ITEM registry->RenderCommandAsMenuItem
+
     if (ImGui::BeginMainMenuBar())
     {
         if (ImGui::BeginMenu("File"))
         {
-            if (ImGui::MenuItem("STUB", "SHORTCUT"))
-            {
-            }
+            COMMAND_ITEM(GlobalCommands::ExitApplication);
 
             ImGui::EndMenu();
         }
