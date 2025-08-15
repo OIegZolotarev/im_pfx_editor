@@ -103,7 +103,7 @@ void GridRenderer::Render()
 #endif
 
     glDepthMask(GL_FALSE);
-    GLBackend::SetBlending(true);
+    GLBackend::SetBlending(true, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     m_pGridMesh->BindAndDraw();
     

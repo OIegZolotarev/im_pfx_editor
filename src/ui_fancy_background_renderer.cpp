@@ -51,7 +51,7 @@ void FancyBackgroundRenderer::PerformRendering()
 
     if (m_pUseGradientBackground->GetAsBool())
     {
-        glDepthMask(0);
+        glDepthMask(GL_FALSE);
         GL_CheckForErrors();
 
         m_pBackgroundShader->Bind();
@@ -79,7 +79,7 @@ void FancyBackgroundRenderer::PerformRendering()
         m_pBackgroundMesh->Draw();
         GL_CheckForErrors();
 
-        glDepthMask(1);
+        glDepthMask(GL_TRUE);
         GL_CheckForErrors();
     }
     else

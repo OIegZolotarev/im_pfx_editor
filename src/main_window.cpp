@@ -220,7 +220,7 @@ int MainWindow::Update()
 
     m_pWidgets->Render();
 
-
+    m_pCameraController->Apply(m_TimersData.frame_delta / 1000.f);
     m_pSceneRenderer->Render(m_pCameraController);
 
     ImGuiEndFrame();

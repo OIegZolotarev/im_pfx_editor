@@ -146,7 +146,7 @@ void CameraController::SetupCommonKeystrokesCallbacks()
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-value" // Make compiler happy...
 
-#define DEBUG_KEYSTROKES printf
+#define DEBUG_KEYSTROKES 
 
     callbackRotate = pfnKeyStrokeCallback([&](bool bHit, const SDL_Event &event) -> void {
         DEBUG_KEYSTROKES("callbackRotate(%d)\n", bHit);
@@ -195,7 +195,7 @@ void CameraController::SetupCommonKeystrokesCallbacks()
 
     callbackToggleFPSNavigation = pfnKeyStrokeCallback([&](bool bHit, const SDL_Event &event) -> void {
         if (bHit)        
-            Con_Printf("callbackToggleFPSNavigation(hit=%d) (%s)\n", bHit, m_pViewport->Name());
+            Con_Printf("callbackToggleFPSNavigation(hit=%d)\n", bHit);
 
         if (bHit)
         {
