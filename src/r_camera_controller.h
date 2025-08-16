@@ -7,26 +7,26 @@
 
 
 #include <functional>
-#include <stack>
-
+#include <stack> 
+  
 #include "common.h"
 #include "event_handler.h"
 #include "mathlib.h"
 #include "variant.h"
-
+ 
 #include "viewport.h"
 
 enum class CameraMouseModes
 {
     Pan,
-    Rotate,
+    Rotate, 
     Zoom,
     None
-};
+}; 
 
-#define PITCH 0
+#define PITCH 0 
 #define YAW   1
-#define ROLL  2
+#define ROLL  2 
 
 typedef std::function<void(bool bHit, const SDL_Event &event)> pfnKeyStrokeCallback;
 
