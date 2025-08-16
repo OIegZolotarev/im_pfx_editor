@@ -6,14 +6,15 @@
 #pragma once
 
 
+#include <cstddef>
 #include <functional>
-#include <stack> 
+#include <stack>   
   
 #include "common.h"
 #include "event_handler.h"
 #include "mathlib.h"
-#include "variant.h"
- 
+#include "variant.h" 
+  
 #include "viewport.h"
 
 enum class CameraMouseModes
@@ -22,8 +23,8 @@ enum class CameraMouseModes
     Rotate, 
     Zoom,
     None
-}; 
-
+};  
+  
 #define PITCH 0 
 #define YAW   1
 #define ROLL  2 
@@ -39,7 +40,7 @@ enum class CameraControlScheme
 
 class CameraCommandKeyStroke
 {
-    int m_iDebugTag = -1;
+    int m_iDebugTag = -1; 
 
     int m_KeyboardKeys[9];
     int m_MouseKeys = 0;
@@ -75,6 +76,7 @@ class CameraCommandKeyStroke
     bool CanBeExecuteFromMouseWheel(int direction);
 };
 
+#include <vector>
 typedef std::vector<CameraCommandKeyStroke *> KeystrokeList;
 
 class CameraController : public IEventHandler

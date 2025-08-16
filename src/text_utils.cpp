@@ -3,9 +3,11 @@
 	(c) 2022 CrazyRussian
 */
 
-#include "text_utils.h"
 #include "common.h"
+#include "text_utils.h"
 
+
+#include <cstdarg>
 #include <string.h>
 
 namespace TextUtils

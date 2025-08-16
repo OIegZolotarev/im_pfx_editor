@@ -16,6 +16,7 @@
 
 #include "persistent.h"
 
+#include <limits.h>
 
 
 using namespace ProgramOptions;
