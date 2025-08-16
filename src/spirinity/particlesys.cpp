@@ -13,7 +13,7 @@
 // #include "pm_defs.h"
 
 #include <common.h>
-#include "../mini_goldsource/types.h"
+#include "../mini_goldsource/goldsource.h"
 #include "particlesys.h"
 
 
@@ -653,7 +653,7 @@ void ParticleSystem::DrawSystem()//vec3_t &right, vec3_t &up)
 {
 	Vector normal, forward, right, up;
 
-	gEngfuncs.GetViewAngles((float*)normal);
+	gEngfuncs.GetViewAngles((float*)&normal[0]);
 	AngleVectors(normal,forward,right,up);
 
 	particle* pParticle = m_pActiveParticle;
@@ -737,10 +737,10 @@ bool ParticleSystem::UpdateParticle(particle *part, float frametime)
 		{
 			Vector vecTarget;
 			VectorMA(part->origin, frametime, part->velocity, vecTarget);
-			pmtrace_t *tr = gEngfuncs.PM_TraceLine( part->origin, vecTarget, PM_TRACELINE_PHYSENTSONLY, 2 /*point hull*/, -1 );
+			pmtrace_t *tr = gEngfuncs.PM_TraceLine( &part->origin[0], &vecTarget[0], PM_TRACELINE_PHYSENTSONLY, 2 /*point hull*/, -1 );
 			if (tr->fraction < 1)
 			{
-				part->origin = tr->endpos;
+				VectorCopy(tr->endpos, part->origin);
 				float bounceforce = DotProduct(tr->plane.normal, part->velocity);
 				float newspeed = (1 - part->pType->m_BounceFriction.GetInstance());
 				part->velocity = part->velocity * newspeed;

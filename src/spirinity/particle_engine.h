@@ -18,16 +18,17 @@ Written by Andrew Lucas
 #pragma once
 #endif
 
-#include "windows.h"
-#include "gl/gl.h"
-#include "pm_defs.h"
-#include "cl_entity.h"
-#include "ref_params.h"
-#include "dlight.h"
-#include "parsemsg.h"
-#include "cvardef.h"
-#include "textureloader.h"
-#include "rendererdefs.h"
+// #include "windows.h"
+// #include "gl/gl.h"
+// #include "pm_defs.h"
+// #include "cl_entity.h"
+// #include "ref_params.h"
+// #include "dlight.h"
+// #include "parsemsg.h"
+// #include "cvardef.h"
+// #include "textureloader.h"
+
+#include "renderdefs.h"
 
 /*
 ====================

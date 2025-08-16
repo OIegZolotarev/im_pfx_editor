@@ -44,7 +44,7 @@ Written by Andrew Lucas
 // #include "GameStudioModelRenderer.h"
 
 #include "../common.h"
-#include "../mini_goldsource/types.h"
+#include "../mini_goldsource/goldsource.h"
 
 #include "renderdefs.h"
 #include "particle_engine.h"
@@ -324,37 +324,41 @@ particle_system_t *CParticleEngine::CreateSystem( char *szPath, Vector origin, V
 		else if(!strcmp(szField, "framerate"))			pSystem->framerate = atoi(szValue);
 		else if(!strcmp(szField, "texture"))
 		{
-			int iOriginalBind;
-			glGetIntegerv(GL_TEXTURE_BINDING_2D, &iOriginalBind);
+			// TODO: implement
+			// int iOriginalBind;
+			// glGetIntegerv(GL_TEXTURE_BINDING_2D, &iOriginalBind);
 
-			char szTexPath[256];
-			strcpy(szTexPath, "gfx/textures/particles/");
-			strcat(szTexPath, szValue);
-			strcat(szTexPath, ".dds");
+			// char szTexPath[256];
+			// strcpy(szTexPath, "gfx/textures/particles/");
+			// strcat(szTexPath, szValue);
+			// strcat(szTexPath, ".dds");
 			
-			pSystem->texture = gTextureLoader.LoadTexture(szTexPath);
+			// pSystem->texture = gTextureLoader.LoadTexture(szTexPath);
 
-			if(!pSystem->texture)
-			{
-				// Remove system
-				m_pSystemHeader = pSystem->next;
-				m_pSystemHeader->prev = nullptr;
-				delete [] pSystem;
+			// if(!pSystem->texture)
+			// {
+			// 	// Remove system
+			// 	m_pSystemHeader = pSystem->next;
+			// 	m_pSystemHeader->prev = nullptr;
+			// 	delete [] pSystem;
 
-				gEngfuncs.COM_FreeFile(pFile);
-				return nullptr;
-			}
+			// 	gEngfuncs.COM_FreeFile(pFile);
+			// 	return nullptr;
+			// }
 
-			glBindTexture(GL_TEXTURE_2D, pSystem->texture->iIndex);
-			glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
-			glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
-			glBindTexture(GL_TEXTURE_2D, iOriginalBind);
+			// glBindTexture(GL_TEXTURE_2D, pSystem->texture->iIndex);
+			// glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
+			// glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
+			// glBindTexture(GL_TEXTURE_2D, iOriginalBind);
 		}
 		else
 			gEngfuncs.Con_Printf("Warning! Unknown field: %s\n", szField);
 	}
 	gEngfuncs.COM_FreeFile(pFile);
 	
+	#pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wdeprecated-enum-float-conversion"
+
 	if (m_pCvarParticleMaxPart->value == ParticleQuality::verylow)
 	{
 		pSystem->maxparticles = 1;
@@ -373,38 +377,42 @@ particle_system_t *CParticleEngine::CreateSystem( char *szPath, Vector origin, V
 	}
 	//pSystem->maxparticles = m_pCvarParticleMaxPart->value; 
 
+	#pragma clang diagnostic pop
+
 	if(pSystem->shapetype != SYSTEM_SHAPE_PLANE_ABOVE_PLAYER)
 	{
-		if(!parent)
-		{
-			model_t *pWorld = IEngineStudio.GetModelByIndex(1);
-			VectorCopy(origin, pSystem->origin);
+		// TODO: implement/review
+		// if(!parent)
+		// {
+		// 	model_t *pWorld = IEngineStudio.GetModelByIndex(1);
+		// 	VectorCopy(origin, pSystem->origin);
 
-			if(pWorld)
-				pSystem->leaf = Mod_PointInLeaf(pSystem->origin, pWorld);
-		}
-		else
-		{
-			pSystem->leaf = parent->leaf;
-		}
+		// 	if(pWorld)
+		// 		pSystem->leaf = Mod_PointInLeaf(pSystem->origin, pWorld);
+		// }
+		// else
+		// {
+		// 	pSystem->leaf = parent->leaf;
+		// }
 	}
 	else
 	{
-		pmtrace_t tr;
-		gEngfuncs.pEventAPI->EV_SetTraceHull(2);
-		gEngfuncs.pEventAPI->EV_PlayerTrace(origin, origin + Vector(0, 0, 160000), PM_STUDIO_IGNORE, -1, &tr);
+		// TODO: implement/ review
+		// pmtrace_t tr;
+		// gEngfuncs.pEventAPI->EV_SetTraceHull(2);
+		// gEngfuncs.pEventAPI->EV_PlayerTrace(origin, origin + Vector(0, 0, 160000), PM_STUDIO_IGNORE, -1, &tr);
 
-		if(tr.fraction == 1.0)
-		{
-			// Remove system
-			m_pSystemHeader = pSystem->next;
-			m_pSystemHeader->prev = nullptr;
-			delete [] pSystem;
+		// if(tr.fraction == 1.0)
+		// {
+		// 	// Remove system
+		// 	m_pSystemHeader = pSystem->next;
+		// 	m_pSystemHeader->prev = nullptr;
+		// 	delete [] pSystem;
 
-			return nullptr;
-		}
+		// 	return nullptr;
+		// }
 
-		pSystem->skyheight = tr.endpos.z;
+		// pSystem->skyheight = tr.endpos.z;
 	}
 
 	if(pSystem->collision != PARTICLE_COLLISION_DECAL)
@@ -426,8 +434,8 @@ particle_system_t *CParticleEngine::CreateSystem( char *szPath, Vector origin, V
 	{
 		// Child systems cannot spawn on their own
 		pSystem->parentsystem = parent;
-		pSystem->maxparticles = NULL;
-		pSystem->particlefreq = NULL;
+		pSystem->maxparticles = 0.f;
+		pSystem->particlefreq = 0.f;
 	}
 	else
 	{
@@ -503,7 +511,7 @@ void CParticleEngine::EnvironmentCreateFirst( particle_system_t *pSystem )
 			//gEngfuncs.Con_Printf("idk if this works \n");
 		}
 
-		CreateParticle(pSystem, vOrigin);
+		CreateParticle(pSystem, &vOrigin[0]);
 	}
 }
 
@@ -567,10 +575,11 @@ void CParticleEngine::CreateParticle( particle_system_t *pSystem, float *flOrigi
 	VectorClear(vUp);
 	VectorClear(vRight);
 
-	gBSPRenderer.GetUpRight(vForward, vUp, vRight);
-	VectorMASSE(pParticle->velocity, gEngfuncs.pfnRandomFloat(pSystem->minvel, pSystem->maxvel), vForward, pParticle->velocity);
-	VectorMASSE(pParticle->velocity, gEngfuncs.pfnRandomFloat(-pSystem->maxofs, pSystem->maxofs), vRight, pParticle->velocity);
-	VectorMASSE(pParticle->velocity, gEngfuncs.pfnRandomFloat(-pSystem->maxofs, pSystem->maxofs), vUp, pParticle->velocity);
+	// TODO: implement
+	//gBSPRenderer.GetUpRight(vForward, vUp, vRight);
+	//VectorMASSE(pParticle->velocity, gEngfuncs.pfnRandomFloat(pSystem->minvel, pSystem->maxvel), vForward, pParticle->velocity);
+	//VectorMASSE(pParticle->velocity, gEngfuncs.pfnRandomFloat(-pSystem->maxofs, pSystem->maxofs), vRight, pParticle->velocity);
+	//VectorMASSE(pParticle->velocity, gEngfuncs.pfnRandomFloat(-pSystem->maxofs, pSystem->maxofs), vUp, pParticle->velocity);
 
 	if(pSystem->maxlife == -1)
 		pParticle->life = pSystem->maxlife;
@@ -585,6 +594,7 @@ void CParticleEngine::CreateParticle( particle_system_t *pSystem, float *flOrigi
 	if(flOrigin)
 	{
 		VectorCopy(flOrigin, vBaseOrigin);
+		
 
 		if(flNormal)
 			VectorMA(vBaseOrigin, 0.1, flNormal, vBaseOrigin);
@@ -1142,7 +1152,7 @@ bool CParticleEngine::UpdateParticle( cl_particle_t *pParticle )
 	if(pSystem->collision)
 	{
 		gEngfuncs.pEventAPI->EV_SetTraceHull(2);
-		gEngfuncs.pEventAPI->EV_PlayerTrace(pParticle->origin, (pParticle->origin+vFinalVelocity*m_flFrameTime), PM_WORLD_ONLY, -1, &pmtrace);
+		gEngfuncs.pEventAPI->EV_PlayerTrace(pParticle->origin, Vector(pParticle->origin+vFinalVelocity*m_flFrameTime), PM_WORLD_ONLY, -1, &pmtrace);
 
 		if(pmtrace.allsolid)
 			return false; // Probably spawned inside a solid
@@ -1180,9 +1190,9 @@ bool CParticleEngine::UpdateParticle( cl_particle_t *pParticle )
 				}
 				VectorMASSE( pParticle->origin, pmtrace.fraction*m_flFrameTime, vFinalVelocity, pParticle->origin );
 
-				pParticle->rotationvel = NULL;
-				pParticle->rotxvel = NULL;
-				pParticle->rotyvel = NULL;
+				pParticle->rotationvel = 0.f;
+				pParticle->rotxvel = 0.f;
+				pParticle->rotyvel = 0.f;
 
 				VectorClear(pParticle->velocity);
 				VectorClear(vFinalVelocity);
@@ -1443,12 +1453,13 @@ void CParticleEngine::RenderParticle( cl_particle_t *pParticle, float flUp, floa
 	}
 	*/
 
-	VectorSubtract(pParticle->origin, gBSPRenderer.m_vRenderOrigin, vDir);
-	if(gHUD.m_pFogSettings.active)
-	{
-		if(vDir.Length() > gHUD.m_pFogSettings.end)
-			return;
-	}
+	// CrazyRissian: fog-culling
+	// VectorSubtract(pParticle->origin, gBSPRenderer.m_vRenderOrigin, vDir);
+	// if(gHUD.m_pFogSettings.active)
+	// {
+	// 	if(vDir.Length() > gHUD.m_pFogSettings.end)
+	// 		return;
+	// }
 
 	VectorNormalizeFast(vDir);
 	DotProductSSE(&flDot, vDir, m_vForward);
@@ -1457,25 +1468,26 @@ void CParticleEngine::RenderParticle( cl_particle_t *pParticle, float flUp, floa
 	if(flDot < 0)
 		return;
 
-	cl_texture_t *pTexture = pParticle->pSystem->texture;
-	if(pParticle->pSystem->rendermode == SYSTEM_RENDERMODE_ADDITIVE)
-	{
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-		glColor4f(pParticle->color[0], pParticle->color[1], pParticle->color[2], pParticle->alpha*pParticle->pSystem->mainalpha);
-		glFogfv(GL_FOG_COLOR, g_vecZero);
-	}
-	else if(pParticle->pSystem->rendermode == SYSTEM_RENDERMODE_ALPHABLEND)
-	{
-		glBlendFunc(GL_ONE, GL_ONE);
-		glColor3f(pParticle->alpha*pParticle->pSystem->mainalpha, pParticle->alpha*pParticle->pSystem->mainalpha, pParticle->alpha*pParticle->pSystem->mainalpha);
-		glFogfv(GL_FOG_COLOR, g_vecZero);
-	}
-	else
-	{
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glColor4f(pParticle->color[0], pParticle->color[1], pParticle->color[2], pParticle->alpha*pParticle->pSystem->mainalpha);
-		glFogfv(GL_FOG_COLOR, gHUD.m_pFogSettings.color);
-	}
+	// TODO: fix FFP
+	//cl_texture_t *pTexture = pParticle->pSystem->texture;
+	// if(pParticle->pSystem->rendermode == SYSTEM_RENDERMODE_ADDITIVE)
+	// {
+	// 	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+	// 	glColor4f(pParticle->color[0], pParticle->color[1], pParticle->color[2], pParticle->alpha*pParticle->pSystem->mainalpha);
+	// 	glFogfv(GL_FOG_COLOR, g_vecZero);
+	// }
+	// else if(pParticle->pSystem->rendermode == SYSTEM_RENDERMODE_ALPHABLEND)
+	// {
+	// 	glBlendFunc(GL_ONE, GL_ONE);
+	// 	glColor3f(pParticle->alpha*pParticle->pSystem->mainalpha, pParticle->alpha*pParticle->pSystem->mainalpha, pParticle->alpha*pParticle->pSystem->mainalpha);
+	// 	glFogfv(GL_FOG_COLOR, g_vecZero);
+	// }
+	// else
+	// {
+	// 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	// 	glColor4f(pParticle->color[0], pParticle->color[1], pParticle->color[2], pParticle->alpha*pParticle->pSystem->mainalpha);
+	// 	glFogfv(GL_FOG_COLOR, gHUD.m_pFogSettings.color);
+	// }
 
 	if(pParticle->pSystem->displaytype == SYSTEM_DISPLAY_PLANAR)
 	{

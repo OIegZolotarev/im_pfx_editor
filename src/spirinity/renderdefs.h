@@ -14,6 +14,24 @@ Renderer base definitions and functions
 Written by Andrew Lucas, Richard Rohac, BUzer, Laurie, Botman and Id Software
 */
 
+#pragma once
+
+//==============================
+//		TEXTURE LOADER STRUCTS
+//
+//==============================
+struct cl_texture_t
+{
+	char szName[64];
+
+	GLuint iIndex;
+
+	int iBpp;
+	unsigned int iWidth;
+	unsigned int iHeight;
+};
+
+
 struct particle_system_t
 {
 	int id;
@@ -163,3 +181,58 @@ struct cl_particle_t
 
 	byte pad[4];
 };
+
+
+struct cl_dlight_t
+{
+	Vector	origin;
+	Vector	color;
+	Vector	angles;
+
+	float	radius;
+	float	die;
+	float	decay;
+	int		key;
+	int		noshadow;
+
+	GLuint	depth;
+
+	// spotlight specific:
+	float	cone_size;
+	// FrustumCheck frustum;	
+	int textureindex;
+};
+
+//==============================
+//		PARTICLE ENGINE DEFS
+//
+//==============================
+#define SYSTEM_SHAPE_POINT				0
+#define SYSTEM_SHAPE_BOX				1
+#define SYSTEM_SHAPE_PLANE_ABOVE_PLAYER 2
+#define SYSTEM_SHAPE_BOX_AROUND_PLAYER 3
+
+#define SYSTEM_DISPLAY_NORMAL			0
+#define SYSTEM_DISPLAY_PARALELL			1
+#define SYSTEM_DISPLAY_PLANAR			2
+#define SYSTEM_DISPLAY_TRACER			3
+
+#define SYSTEM_RENDERMODE_ADDITIVE		0
+#define SYSTEM_RENDERMODE_ALPHABLEND	1
+#define SYSTEM_RENDERMODE_INTENSITY		2
+
+#define PARTICLE_COLLISION_NONE			0
+#define PARTICLE_COLLISION_DIE			1
+#define PARTICLE_COLLISION_BOUNCE		2
+#define PARTICLE_COLLISION_DECAL		3
+#define PARTICLE_COLLISION_STUCK		4
+#define PARTICLE_COLLISION_NEW_SYSTEM	5
+
+#define PARTICLE_WIND_NONE				0
+#define PARTICLE_WIND_LINEAR			1
+#define PARTICLE_WIND_SINE				2
+
+#define PARTICLE_LIGHTCHECK_NONE		0
+#define PARTICLE_LIGHTCHECK_NORMAL		1
+#define PARTICLE_LIGHTCHECK_SCOLOR		2
+#define PARTICLE_LIGHTCHECK_MIXP		3
